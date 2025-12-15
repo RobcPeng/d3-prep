@@ -1,0 +1,7 @@
+Start a server:
+python -m http.server 8000
+
+
+OR 
+
+uvicorn server:app --reload --port 8000
