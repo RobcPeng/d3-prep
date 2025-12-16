@@ -19,12 +19,25 @@ const circle_op = (id) => {
     .attr("stroke-width", "5px");
 };
 
+var data_ing;
+
 const get_data_from_csv = (source) => {
   d3.json(`/api/v1/data?source=${encodeURIComponent(source)}`).then((data) => {
     console.log(data);
+    data_ing = data;
+    // call other functions here after the callback executes
   });
 };
 
-window.hello = hello;
-window.circle_op = circle_op;
-window.get_data_from_csv = get_data_from_csv;
+const func_test = () => {
+  d3.select("body")
+    .selectAll("p")
+    .data(data_ing)
+    .enter()
+    .append("p")
+    .text(function (d) {
+      return d.bye;
+    });
+};
+
+// window.get_data_from_csv = get_data_from_csv;
